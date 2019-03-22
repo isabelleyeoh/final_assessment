@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Homepage from './pages/Homepage';
 import axios from 'axios';
-import { Route, Link } from "react-router-dom"
+import { Route } from "react-router-dom"
 import UserProfilePage from './pages/UserProfilePage';
 import './App.css';
 import Navbar from './components/Navbar'
@@ -9,6 +9,7 @@ import MyProfilePage from './pages/MyProfilePage';
 
 
 // import Loader from './components/Loader';
+
 
 
 class App extends React.Component {
@@ -19,29 +20,28 @@ class App extends React.Component {
     showMessage: false
   }
 
-
-
   componentDidMount = () => {
 
     axios({
       method: 'get',
-      url: 'https://insta.nextacademy.com/api/v1/users/',
+      url: `http://localhost:5000/api/v1/users/`,
     })
-    // .then(result => {
-    //   // If successful, we do stuffs with 'result'
-    //   this.setState({
-    //     users: result.data,
-    //     isLoading: false
-    //   })
-    // })
-    // .catch(error => {
-    //   // If unsuccessful, we notify users what went wrong
-    //   console.log('ERROR: ', error)
-    //   this.setState({
-    //     hasErrors: true,
-    //     isLoading: false
-    //   })
-    // });
+      .then(result => {
+        console.log(result)
+        this.setState({
+          users: result.data,
+          isLoading: false
+        })
+      })
+      // If successful, we do stuffs with 'result'
+      .catch(error => {
+        console.log('ERROR: ', error)
+        this.setState({
+          hasErrors: true,
+          isLoading: false
+        })
+      });
+    // If unsuccessful, we notify users what went wrong
   }
 
   toggleNotice = () => {

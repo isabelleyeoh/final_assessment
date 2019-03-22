@@ -1,70 +1,70 @@
-import React, { Component } from 'react';
+import React from 'react';
 import axios from 'axios';
 import Image from "react-graceful-image";
 
 class MyProfilePage extends React.Component {
   state = {
-    images:[], 
-    hasError:true
+    images: [],
+    hasError: true
   }
 
   componentDidMount = () => {
 
     const jwt = localStorage.getItem('jwt')
 
-  axios({
-    method: 'get',
-    url: `https://insta.nextacademy.com/api/v1/images/me`,
-    headers:{
+    axios({
+      method: 'get',
+      url: `http://localhost:5000/api/v1/images`,
+      headers: {
         Authorization: `Bearer ${jwt}`
-    }
-  })
+      }
+    })
 
-  .then(result => {
-    console.log(result)
+      .then(result => {
+        console.log(result)
 
-    debugger
-    this.setState ({
-      images: result.data
+        debugger
+        this.setState({
+          images: result.data
+        })
+
       })
 
-  })
+      .catch(error => {
 
-  .catch(error => {
-    
-      // If unsuccessful, we notify users what went wrong
-      console.log('ERROR: ', error)
-      this.setState({
-        hasErrors: true
-      })
-    });
+        // If unsuccessful, we notify users what went wrong
+        console.log('ERROR: ', error)
+        this.setState({
+          hasErrors: true
+        })
+      });
 
   }
 
-render(){
+  render() {
 
-    const {images} = this.state
+    const { images } = this.state
 
-  return (
-    <div>
-    {
-    images.map(images => 
-    <div key={images} id="images">
-      <Image src = {images} 
-      width="50%"
-      height="50%"
-      style={{ padding: "20px" }}
-      alt="images"
-      retry={{ count: 10, delay: 2 }}
-      />
-    </div>
+    return (
+      <div>
+        {
+          images.map(images =>
+            <div key={images} id="images">
+              <Image src={images}
+                width="50%"
+                height="50%"
+                style={{ padding: "20px" }}
+                alt="images"
+                retry={{ count: 10, delay: 2 }}
+              />
+            </div>
+          )
+        }
+
+      </div>
     )
-    }
 
-  </div>
-  )
- 
-}
+  }
 }
 
 

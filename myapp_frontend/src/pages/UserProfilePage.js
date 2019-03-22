@@ -14,7 +14,7 @@ const UserProfilePage = (props) => {
     ));
 
     console.log(props.users)
-    const { id, profileImage, username } = userInfo
+    const { username } = userInfo
 
 
     return (

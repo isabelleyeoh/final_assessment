@@ -1,6 +1,6 @@
 from app import app
-import instagram_api
-import instagram_web
+import myapp_api
+import myapp_web
 
 if __name__ == '__main__':
     app.run()
