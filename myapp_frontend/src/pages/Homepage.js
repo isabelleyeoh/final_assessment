@@ -1,69 +1,48 @@
-import React, { Component } from 'react';
-import UserImages from '../containers/UserImages';
-import Loader from '../components/Loader';
+import React from 'react';
 import { Link } from "react-router-dom";
-import { Card, CardImg, CardBody, CardTitle, CardText, Container, Row, Col } from 'reactstrap';
+
+// Styles
+import '../styles/index.css';
+import '../styles/Home.css';
+
+// Components
+import Header from '../components/Header.js';
+import Venues from '../components/Venues.js'
+import RecentSearches from '../components/RecentSearches.js';
+import Loading from '../components/Loading'
 
 
-  // stateless component
-
-  export default class Homepage extends React.Component{
-
-   
+export default class Homepage extends React.Component {
 
 
-render(){
-  const {users, isLoading} = this.props
- 
+  render() {
+    const { users, isLoading } = this.props
 
-  return (
 
-    <>
-    <div>
-      <h1>Home Page</h1>
-      {isLoading ? 
-        <Loader type="grow" color="primary"/>
-        : null 
-        }
-    </div>
-    <div>
+    return (
 
-    {
-    users.map((user,index) =>
+      <>
+        <Header type="long" />
 
-    <Row >
-    <Col sm ="3">
-    <Card key ={index}>
-    <Link to={`/users/${user.id}`}>
-        <CardImg id="profileImage"
-        src={user.profileImage} 
-        width="20px"
-        style={{ padding: "20px" }}
-        alt="profile image"
-        retry={{ count: 10, delay: 2 }} />
-  </Link>
-        <CardBody>
-          <CardTitle>{user.username}</CardTitle>
-          <CardText>To insert text</CardText>
-
-          </CardBody>
-      </Card>
-      </Col>
-
-      <Col sm ="9" className="bg-light border border-light">
-          <UserImages userId={user.id}/>
-
-      </Col>
-    
-      </Row> 
-          )
+        {isLoading ?
+          <Loading type="grow" color="muted" />
+          : null
         }
 
-    </div>        
+        <div className="home-venues">
+          <Venues />
+        </div>
 
-    </>
-    
-  )
-}
+        <div className="home-recent-searches">
+          <RecentSearches />
+        </div>
+
+
+
+      </>
+
+    )
+  }
+
 
 }

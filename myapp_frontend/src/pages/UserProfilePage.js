@@ -1,5 +1,4 @@
 import React from "react"
-import UserImages from "../containers/UserImages";
 
 
 const UserProfilePage = (props) => {
@@ -14,7 +13,7 @@ const UserProfilePage = (props) => {
     ));
 
     console.log(props.users)
-    const { id, profileImage, username } = userInfo
+    const { username } = userInfo
 
 
     return (
@@ -28,7 +27,7 @@ const UserProfilePage = (props) => {
             </div>
 
             <div>
-                <UserImages userId={props.match.params.id} />
+
             </div>
         </>
     )
