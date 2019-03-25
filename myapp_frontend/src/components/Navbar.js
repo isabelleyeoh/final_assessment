@@ -40,7 +40,7 @@ export default class NavBar extends React.Component {
         /> : null}
         {/* passing toggle to Modal */}
         <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">APPNAME</NavbarBrand>
+          {/* <NavbarBrand href="/">Let's Go!</NavbarBrand> */}
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
@@ -48,7 +48,10 @@ export default class NavBar extends React.Component {
                 <Link to="/">Home</Link>
               </NavItem>
               <NavItem className='mr-3'>
-                <Link to="/profile">My Profile</Link>
+                <Link to="/user/:id">Profile Page</Link>
+              </NavItem>
+              <NavItem className='mr-3'>
+                <Link to="/history/:id">History</Link>
               </NavItem>
               {localStorage.getItem("jwt") ?
                 <NavItem className='mr-3'>
