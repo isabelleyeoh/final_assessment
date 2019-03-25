@@ -54,7 +54,7 @@ export default class Header extends Component {
 	search_venue() {
 
 		if (this.state.form_data.eating === '') {
-			alert('You should write a something to eat!');
+			alert('You should write tell me what you want to eat!');
 		} else if (this.state.form_data.place === '') {
 			alert('You should write a place!');
 		} else {

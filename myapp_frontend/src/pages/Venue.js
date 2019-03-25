@@ -9,7 +9,7 @@ import '../styles/Venue.css';
 // Components
 import PriceTier from '../components/PriceTier.js';
 import Photos from '../components/Photos.js';
-import Tips from '../components/Tips.js';
+
 
 class Venue extends React.Component {
 
@@ -36,9 +36,9 @@ class Venue extends React.Component {
       method: 'get',
       url: `https://api.foursquare.com/v2/venues/` + this.state.venue_id,
       params: {
-        client_id: 'GH4BWS2A1V0K0RAIGWA401NNQ04JUIF55HUTP30LQ1IKINUL',
-        client_secret: 'NRTY31TIGPDGK5GWODTMDKTQL1JTW1VKLWHWZJR425E03WSN',
-        v: 20120610
+        client_id: 'L5SR1EXYJILSL5QASZBISWFNB5D0JKIWVWILMWYVKO24FWBA',
+        client_secret: 'QTYAE4RG51LAYVIYEGUGLMRVEPJG3TJYY5WLD1H0I3AY3SHU',
+        v: '20180323'
       }
     })
 
@@ -161,30 +161,6 @@ class Venue extends React.Component {
 
   }
 
-  render_body() {
-
-    if (this.state.is_loading === false) {
-
-      if (this.state.venue !== '') {
-        return (
-          <div className="venue-body">
-
-            <div className="venue-photos">
-              <Photos id={this.state.venue_id} />
-            </div>
-
-            <div className="venue-tips">
-              <Tips tips={this.state.tips} />
-            </div>
-
-          </div>
-        );
-      }
-
-    }
-
-  }
-
   render() {
     return (
       <div className="venue">
@@ -206,7 +182,7 @@ class Venue extends React.Component {
 
         </div>
 
-        {this.render_body()}
+
 
       </div>
     );

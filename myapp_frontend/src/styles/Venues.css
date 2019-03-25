@@ -12,11 +12,11 @@
   position: relative;
   width: 50%;
   height: 350px;
-  padding: 0 20px 20px 0;
+  padding: 20px;
 }
 
 .venue-element:nth-child(2n + 0) {
-  padding: 0 0 20px 0;
+  padding: 20px;
 }
 
 .venue-element-content {

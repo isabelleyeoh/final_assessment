@@ -36,9 +36,9 @@ export default class Photos extends Component {
 
 		axios.get('https://api.foursquare.com/v2/venues/' + venue_id + '/photos', {
 			params: {
-				client_id: 'GH4BWS2A1V0K0RAIGWA401NNQ04JUIF55HUTP30LQ1IKINUL',
-				client_secret: 'NRTY31TIGPDGK5GWODTMDKTQL1JTW1VKLWHWZJR425E03WSN',
-				v: 20120610,
+				client_id: 'L5SR1EXYJILSL5QASZBISWFNB5D0JKIWVWILMWYVKO24FWBA',
+				client_secret: 'QTYAE4RG51LAYVIYEGUGLMRVEPJG3TJYY5WLD1H0I3AY3SHU',
+				v: '20180323',
 				limit: 12
 			}
 		}).then((response) => {
@@ -70,11 +70,6 @@ export default class Photos extends Component {
 
 						<div className="photo-element-content box-sizing" style={{ backgroundImage: 'url(' + photo.prefix + photo.width + 'x' + photo.height + photo.suffix + ')' }}>
 
-							<div className="photo-element-user-image transition-animation-3">
-								<div style={{ backgroundImage: 'url( ' + photo.user.photo.prefix + '80x80' + photo.user.photo.suffix + ' )' }}></div>
-							</div>
-
-							<div className="photo-element-user-name transition-animation-3">{photo.user.firstName} {photo.user.lastName !== undefined ? photo.user.lastName : ''}</div>
 
 						</div>
 
@@ -89,7 +84,7 @@ export default class Photos extends Component {
 
 		} else {
 			return (
-				<Loading text={'Loading venue photos...'} icon={require('../images/icons/loading.png')} />
+				<Loading text={'Loading venue photos...'} />
 			);
 		}
 
