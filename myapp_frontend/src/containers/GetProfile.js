@@ -4,11 +4,11 @@ import axios from 'axios';
 
 class GetProfile extends React.Component {
 	state = {
-		user: '',
-		hasError: true
+		hasError: true,
+		username: []
 	}
 
-	updateAccount = (e) => {
+	getDetails = () => {
 
 		const jwt = localStorage.getItem('jwt')
 
@@ -16,18 +16,15 @@ class GetProfile extends React.Component {
 			method: 'get',
 			url: `http://localhost:5000/api/v1/users/getprofile`,
 			headers: {
-				Authorization: `Bearer ${jwt}`
+				Authorization: `Bearer ${jwt.auth_token}`
 			}
 		})
-
 
 			.then(result => {
 				console.log(result)
 				this.setState({
-					user: result.data
-
+					username: result.data
 				})
-
 			})
 
 			.catch(error => {
@@ -42,20 +39,14 @@ class GetProfile extends React.Component {
 
 	render() {
 
+		const { username } = this.state
 
 		return (
 			<>
 
 				<div>
-					<h4>Hi, username. </h4>
+					{/* <h4>Hi,{username}. </h4> */}
 					<h5>You may change your username, email and password here.</h5>
-
-
-					{/* {
-						username ? `Hi, my name is ${username} !` :
-							null
-
-					} */}
 
 				</div>
 

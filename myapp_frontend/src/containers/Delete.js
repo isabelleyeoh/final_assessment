@@ -5,27 +5,28 @@ import { Button } from 'reactstrap';
 
 class Delete extends React.Component {
 	state = {
-		hasError: true
+		hasError: true,
+		success: [],
+		error: []
 	}
 
 	deleteAccount = (e) => {
 
 		e.preventDefault();
 
-		const jwt = localStorage.getItem('jwt')
+		const jwt = JSON.parse(localStorage.jwt)
 
 		axios({
 			method: 'post',
 			url: `http://localhost:5000/api/v1/users/delete`,
-			data: {
-				user: this.state.user,
+			headers: {
+				Authorization: `Bearer ${jwt.auth_token}`
 			}
 		})
 			.then(result => {
 				console.log(result)
 				this.setState({
-					user: result.data
-
+					success: result.data.message,
 				})
 				window.alert("account deleted")
 			})

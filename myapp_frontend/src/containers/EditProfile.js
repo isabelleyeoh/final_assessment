@@ -3,9 +3,6 @@ import axios from 'axios';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
 
-// Styles
-import '../styles/Profile.css';
-
 class EditProfile extends React.Component {
 	state = {
 		username: "",
