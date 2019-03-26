@@ -6,9 +6,8 @@ import './App.css';
 // Components
 import Navbar from './components/Navbar';
 import Homepage from './pages/Homepage';
-import UserProfilePage from './pages/UserProfilePage';
-import History from './pages/History';
-import Venue from './pages/Venue'
+import ProfilePage from './pages/ProfilePage';
+
 
 
 class App extends React.Component {
@@ -68,9 +67,8 @@ class App extends React.Component {
 
         <div>
           <Route exact path="/" component={props => <Homepage />} />
-          <Route path={`/myprofile`} component={props => <UserProfilePage />} />
-          <Route path="/history/:id" component={props => <History />} />
-          <Route path="/venue/venue_id" component={props => <Venue />} />
+          <Route path='/myprofile' component={props => <ProfilePage />} />
+
 
         </div>
 

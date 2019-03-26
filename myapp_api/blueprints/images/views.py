@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, make_response, request
-from models.image import Image
-from models.user import User
+from models.image import *
+from models.user import *
 
 images_api_blueprint = Blueprint('images_api', __name__)
 

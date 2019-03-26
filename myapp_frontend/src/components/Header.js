@@ -115,11 +115,11 @@ export default class Header extends Component {
 	render() {
 		return (
 
-			<div className={ClassNames({ 'header': true, 'transition-animation-3': true, 'header-short': this.state.animated_classes.header, 'header-invisible': this.state.is_header_invisible })}>
+			<div className={ClassNames({ 'header': true, 'header-short': this.state.animated_classes.header, 'header-invisible': this.state.is_header_invisible })}>
 
 				<div className={ClassNames({ 'header-content': true, 'header-content-short': this.state.animated_classes.content })}>
 
-					<div className={ClassNames({ 'header-logo': true, 'transition-animation-3': true, 'header-logo-short': this.state.animated_classes.logo })}>
+					<div className={ClassNames({ 'header-logo': true, 'header-logo-short': this.state.animated_classes.logo })}>
 						<img src={require('../images/logos/' + this.state.logo)} alt="Logo" />
 					</div>
 

@@ -56,13 +56,20 @@ def create():
 
             return make_response(jsonify(responseObject)), 201
 
+@users_api_blueprint.route('/getprofile', methods=['GET'])
+def getprofile():
+    user_id = User.decode_auth_token(auth_token)
+    user = User.get_or_none(id=user_id)
+    return jsonify(users)
 
-@users_api_blueprint.route('/myprofile', methods=['GET'])
-def show():
+@users_api_blueprint.route('/updateprofile', methods=['POST'])
+def update():
+
     auth_header = request.headers.get('Authorization')
 
     if auth_header:
         auth_token = auth_header.split(" ")[1]
+        breakpoint()
     else:
         responseObject = {
             'status': 'failed',
@@ -71,7 +78,69 @@ def show():
 
         return make_response(jsonify(responseObject)), 401
 
+    breakpoint() 
+    
     user_id = User.decode_auth_token(auth_token)
 
     user = User.get_or_none(id=user_id)
-    return jsonify(user)
+    
+    post_data = request.get_json()
+    update_username = post_data['username']
+    update_password = post_data['password']
+
+    q = User.update(username=update_username, password=update_password).where(User.id==user_id)
+
+    if q.execute():
+        responseObject = {
+            'status': 'success',
+            'message': 'Successfully edit.',
+        }
+
+        return make_response(jsonify(responseObject)), 201
+
+    else:
+        responseObject = {
+            'status': 'fail',
+            'message': 'Some error occurred. Please try again.'
+        }
+
+        return make_response(jsonify(responseObject)), 401
+
+
+@users_api_blueprint.route('/delete', methods=['POST'])
+def delete():
+
+    auth_header = request.headers.get('Authorization')
+
+    if auth_header:
+        auth_token = auth_header.split(" ")[1]
+        breakpoint()
+    else:
+        responseObject = {
+            'status': 'failed',
+            'message': 'No authorization header found'
+        }
+
+        return make_response(jsonify(responseObject)), 401
+
+    breakpoint() 
+    user_id = User.decode_auth_token(auth_token)
+    user = User.get_or_none(id=user_id)
+    q = User.delete().where(User.id==user_id)
+ 
+    if q.execute():
+        responseObject = {
+            'status': 'success',
+            'message': 'Successfully edit.',
+        }
+
+        return make_response(jsonify(responseObject)), 201
+
+    else:
+        responseObject = {
+            'status': 'fail',
+            'message': 'Some error occurred. Please try again.'
+        }
+
+        return make_response(jsonify(responseObject)), 401
+

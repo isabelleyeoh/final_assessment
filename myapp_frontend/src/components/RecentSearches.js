@@ -7,8 +7,6 @@ import EventBus from '../config/EventBus.js';
 import '../styles/index.css';
 import '../styles/RecentSearches.css';
 
-// Components
-import NotFound from '../components/NotFound.js';
 
 
 export default class RecentSearches extends Component {
@@ -53,10 +51,6 @@ export default class RecentSearches extends Component {
 
       ));
 
-    } else {
-      return (
-        <NotFound text={'You haven\'t searched anything. Seems like you\'re new!'} />
-      );
     }
 
   }

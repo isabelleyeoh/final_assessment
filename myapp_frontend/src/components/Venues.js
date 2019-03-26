@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
-import { Link } from 'react-router-dom';
 
 // Config
 import EventBus from '../config/EventBus.js';
@@ -9,12 +8,6 @@ import EventBus from '../config/EventBus.js';
 import '../styles/index.css';
 import '../styles/Venues.css';
 
-// Components
-import PriceTier from '../components/PriceTier.js';
-import NotFound from '../components/NotFound.js';
-import Loading from '../components/Loading.js';
-
-
 export default class Venues extends Component {
 
 	constructor(props) {
@@ -22,7 +15,7 @@ export default class Venues extends Component {
 		super(props);
 
 		this.state = {
-			is_loading: true,
+			is_loading: false,
 			form_data: {
 				eating: '',
 				place: ''
@@ -139,36 +132,11 @@ export default class Venues extends Component {
 
 						<div className="venue-element-content" style={{ backgroundImage: 'url(' + venue.venue.photo + ')' }}>
 
-							<Link className="link" to={'/venue/' + venue.venue.id} />
 
 							<div className="venue-element-detail">
 
 								<div className="venue-element-name box-sizing">{venue.venue.name}</div>
 
-								<div className="venue-element-summary box-sizing">
-
-									<div className="venue-element-summary-col box-sizing">
-										<div className="venue-element-summary-icon">
-											<img src={require('../images/icons/user.png')} alt="Visitors" />
-										</div>
-										<div className="venue-element-summary-text box-sizing">{venue.venue.hereNow.count}</div>
-									</div>
-
-									<div className="venue-element-summary-col box-sizing">
-										<div className="venue-element-summary-icon">
-											<img src={require('../images/icons/price.png')} alt="Price" />
-										</div>
-										<div className="venue-element-summary-text box-sizing">
-											<PriceTier tier={venue.venue.price !== undefined && venue.venue.price !== '' ? venue.venue.price.tier : 0} />
-										</div>
-									</div>
-
-									<div className="venue-element-summary-col box-sizing">
-										<div className="venue-element-summary-triangle"></div>
-										<div className="venue-element-summary-point">{venue.venue.rating === undefined || venue.venue.rating === '' ? '0.0' : venue.venue.rating.toFixed(1)}</div>
-									</div>
-
-								</div>
 
 							</div>
 
@@ -177,16 +145,8 @@ export default class Venues extends Component {
 					</div>
 				));
 
-			} else {
-				return (
-					<NotFound text={'There is no such a venue in <b>' + this.state.form_data.place + '</b> about <b>' + this.state.form_data.eating + '</b>'} icon={require('../images/icons/no-venue.png')} />
-				);
 			}
 
-		} else {
-			return (
-				<Loading type="grow-sm" color="muted" text={'Looking for venues...'} />
-			);
 		}
 
 	}

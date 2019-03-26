@@ -28,7 +28,7 @@ class Signup extends React.Component {
     })
       .then(result => {
         console.log(result)
-        localStorage.setItem('jwt', result.data.auth_token)
+        localStorage.setItem('jwt', JSON.stringify(result.data));
         this.setState({
           response: result.data.message
         })

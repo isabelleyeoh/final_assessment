@@ -19,7 +19,7 @@ class Login extends React.Component {
 
     axios({
       method: 'post',
-      url: `http://localhost:5000/api/v1/login`,
+      url: 'http://localhost:5000/api/v1/sessions/login',
       data: {
         email: this.state.email,
         password: this.state.password
@@ -27,7 +27,7 @@ class Login extends React.Component {
     })
       .then(result => {
         console.log(result)
-        localStorage.setItem('jwt', result.data.auth_token)
+        localStorage.setItem('jwt', JSON.stringify(result.data))
         this.setState({
           response: result.data.message,
           statusLogin: true
@@ -44,7 +44,7 @@ class Login extends React.Component {
           hasErrors: true
         })
         window.alert("unsuccessful login")
-      });
+      })
 
   }
 
@@ -62,10 +62,7 @@ class Login extends React.Component {
     })
   }
 
-  validateEmail = () => {
-    var re = /^[a-zA-Z0-9]+@+[a-zA-Z0-9]+.+[A-z]/
-    return re.test(this.state.email);
-  }
+
 
   render() {
 
@@ -92,7 +89,7 @@ class Login extends React.Component {
         </ModalBody>
         <ModalFooter>
           <Button color="danger" onClick={signupToggle}>Show Sign up</Button>
-          <Button color="primary" onClick={this.submitLogin} disabled={this.state.email && this.state.password && this.validateEmail() ? false : true}>Login</Button>{' '}
+          <Button color="primary" onClick={this.submitLogin}>Login</Button>{' '}
           <Button color="secondary" onClick={toggle}>Cancel</Button>
         </ModalFooter>
 
