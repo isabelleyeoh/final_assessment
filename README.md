@@ -1,152 +1,68 @@
-# Flask Nextagram Template
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-version 0.0.1 (alpha)
+## Available Scripts
 
-## Development
+In the project directory, you can run:
 
-**Make a fork before cloning**
+### `npm start`
 
-**Install dependencies**
+Runs the app in the development mode.<br>
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-- Python 3.7.2 was tested
-- Postgresql 10.3 was tested
+The page will reload if you make edits.<br>
+You will also see any lint errors in the console.
 
-1. Delete `peewee-db-evolve==3.7.0` from `requirements.txt` during the first installation.
-   Because of how `peewee-db-evolve` created it's build process, we would first need to delete it.
-1. Run:
-   ```
-   pip install -r requirements.txt
-   ```
-1. Now add `peewee-db-evolve==3.7.0` back into `requirements.txt`
-1. Run again:
-   ```
-   pip install -r requirements.txt
-   ```
+### `npm test`
 
-If you're having trouble installing dependencies
+Launches the test runner in the interactive watch mode.<br>
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-- Remove `certifi==2018.11.29` from requirements.txt
+### `npm run build`
 
-If you're having trouble starting flask
+Builds the app for production to the `build` folder.<br>
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-- Restart your terminal as well and reactivate conda source
+The build is minified and the filenames include the hashes.<br>
+Your app is ready to be deployed!
 
-**Create a `.env` file at the root of the directory**
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-This project uses `python-dotenv`. When running commands using `flask`, environment variables from `.env` are automatically loaded.
+### `npm run eject`
 
-When executing `python` scripts directly e.g. `python start.py`, environment variables are not loaded and will not work except `python migrate.py` _(read the script - `migrate.py` to know why it would load the environment variables `.env`)_
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-Minimum environment variables that needs to be set
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-```
-FLASK_APP='start' # based on the name of our entry point script
-FLASK_ENV='development' # use this in development, otherwise 'production' or 'test'
-DATABASE_URL="postgres://localhost:5432/nextagram_dev"
-SECRET_KEY= #generate your own key
-```
+Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-Use `os.urandom(32)` to generate a random secret key and paste that in `.env`. It's important to keep this `SECRET_KEY` private.
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-Since this app uses Pooled Connections, you may also want to set:
+## Learn More
 
-```
-DB_TIMEOUT=300 # 5 minutes
-DB_POOL=5
-```
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-_(see `database.py`)_
+To learn React, check out the [React documentation](https://reactjs.org/).
 
-**Create a Database**
+### Code Splitting
 
-- this application is configured to use Postgresql
+This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
 
-```
-createdb nextagram_dev
-```
+### Analyzing the Bundle Size
 
-_\*if you name your database something else, tweak the settings in `.env`_
+This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
 
-**Ignoring Files from Git**
+### Making a Progressive Web App
 
-Before git commiting, remember to ignore key files. Here's an example of `.gitignore`
+This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
 
-```
-.vscode
-*.DS_Store
-*__pycache__
-*.env
-```
+### Advanced Configuration
 
----
+This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
 
-## Database Migrations
+### Deployment
 
-```
-python migrate.py
-```
+This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
 
-\*_this template is configured to use Peewee's PooledConnection, however, migrations using Peewee-DB-Evolve doesn't work well. A hack was used to not use PooledConnection when running migration. Pending investigation. There are no known side effects to run this template in production._
+### `npm run build` fails to minify
 
-## Starting Server
-
-```
-flask run
-```
-
-## Starting Shell
-
-```
-flask shell
-```
-
----
-
-## Deploying to Production
-
-- ensure environment variables are configured appropriately
-- migrations will not run in interactive mode when FLASK_ENV is set to 'production'
-- It's important to set your own `SECRET_KEY` environment variable and keep that private.
-
----
-
-## Architecture
-
-This template separates out API and Web to separate packages. Both API and Web are configured to use Flask's Blueprints.
-
-All new models should go into it's own file/script within the models directory.
-
-The entry point for a Flask server to start is located at `start.py`
-
----
-
-## Dependencies
-
-This template was created against `Python 3.7`. Should work with newer versions of Python. Not tested with older versions.
-
-`Peewee` is used as ORM along with a database migration library `peewee-db-evolve`.
-
-This template also comes packaged with Bootstrap 4.1.3 and it's dependencies (jQuery).
-
-A copy of requirements.txt is included in the repository.
-
-```
-autopep8==1.4.3
-certifi==2018.11.29
-Click==7.0
-colorama==0.4.1
-Flask==1.0.2
-Flask-Cors==3.0.7
-itsdangerous==1.1.0
-Jinja2==2.10
-MarkupSafe==1.1.0
-peewee==3.8.2
-peewee-db-evolve==3.7.0
-psycopg2-binary==2.7.7
-pycodestyle==2.5.0
-python-dotenv==0.10.1
-six==1.12.0
-Werkzeug==0.14.1
-```
-
-Remove `certifi==2018.11.29` if you're having trouble installing dependencies.
+This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify

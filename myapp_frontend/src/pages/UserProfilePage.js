@@ -1,38 +1,66 @@
-import React from "react"
+import React from 'react';
+import axios from 'axios';
 
 
-const UserProfilePage = (props) => {
-
-    if (!props.users.length) {
-        return <h1>Loading...</h1>
+class MyProfilePage extends React.Component {
+    state = {
+        user: '',
+        hasError: true
     }
-    const usersArray = props.users;
-    const userId = props.match.params.id;
-    const userInfo = usersArray.find((user) => (
-        user.id === userId
-    ));
 
-    console.log(props.users)
-    const { username } = userInfo
+    componentDidMount = () => {
+
+        const jwt = localStorage.getItem('jwt')
+
+        debugger
+        axios({
+            method: 'get',
+            url: `http://localhost:5000/api/v1/users/myprofile`,
+            headers: {
+                Authorization: `Bearer ${jwt}`
+            }
+        })
 
 
-    return (
-        <>
-            <div>
-                {
-                    username ? `Hi, my name is ${username} !` :
-                        null
+            .then(result => {
+                console.log(result)
 
-                }
-            </div>
+                debugger
+                this.setState({
+                    user: result.data
 
-            <div>
+                })
 
-            </div>
-        </>
-    )
+            })
+
+            .catch(error => {
+
+                // If unsuccessful, we notify users what went wrong
+                console.log('ERROR: ', error)
+                this.setState({
+                    hasErrors: true
+                })
+            });
+
+    }
+
+    render() {
+
+
+        return (
+            <>
+                <div>
+                    <p>testing</p>
+                </div>
+
+
+            </>
+        )
+    }
+
+
 }
 
-export default UserProfilePage
 
 
+export default MyProfilePage;

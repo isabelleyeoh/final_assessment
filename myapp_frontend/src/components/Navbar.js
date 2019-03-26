@@ -48,7 +48,7 @@ export default class NavBar extends React.Component {
                 <Link to="/">Home</Link>
               </NavItem>
               <NavItem className='mr-3'>
-                <Link to="/user/:id">Profile Page</Link>
+                <Link to="/myprofile">Profile Page</Link>
               </NavItem>
               <NavItem className='mr-3'>
                 <Link to="/history/:id">History</Link>

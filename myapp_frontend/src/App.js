@@ -68,7 +68,7 @@ class App extends React.Component {
 
         <div>
           <Route exact path="/" component={props => <Homepage />} />
-          <Route path={`/user/:id`} component={props => <UserProfilePage users={users} />} />
+          <Route path={`/myprofile`} component={props => <UserProfilePage />} />
           <Route path="/history/:id" component={props => <History />} />
           <Route path="/venue/venue_id" component={props => <Venue />} />
 
