@@ -4,7 +4,7 @@ from flask import Flask
 from models.base_model import db
 
 web_dir = os.path.join(os.path.dirname(
-    os.path.abspath(__file__)), 'instagram_api')
+    os.path.abspath(__file__)), 'myapp_api')
 
 app = Flask('FINAL_ASSESSMENT', root_path=web_dir)
 
@@ -13,6 +13,9 @@ if os.getenv('FLASK_ENV') == 'production':
 else:
     app.config.from_object("config.DevelopmentConfig")
 
+@app.route('/')
+def index():
+    return "lET'S GO"
 
 @app.before_request
 def before_request():
